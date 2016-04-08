@@ -1,6 +1,16 @@
 digraph G {
 
   compound=true;
+  forcelabels=true;
+
+  iii[label="iii: e"];
+  vi[label="vi: a"];
+  V[label="V: G"];
+  I[label="I: C"];
+  IV[label="IV: F"];
+  vii[label="vii: h"];
+  ii[label="ii: d"];
+
 
 
    subgraph cluster1 {
