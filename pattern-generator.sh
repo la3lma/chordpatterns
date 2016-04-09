@@ -49,7 +49,7 @@ EOF
 
 # ♭ ♯
 
-pattern C d e F G a h > c_chords.dot
-pattern F g a B♭ h C d e  > f_chords.dot
-pattern G a h C D e f♯  > g_chords.dot
-
+pattern C  d e F  G a h    > c_chords.dot
+pattern F  g a B♭ C d e    > f_chords.dot
+pattern G  a h C  D e f♯   > g_chords.dot
+pattern B♭ c d E♭ F g a    > Bb_chords.dot
