@@ -50,6 +50,6 @@ EOF
 # ♭ ♯
 
 pattern C d e F G a h > c_chords.dot
-pattern F g a Bb h C d e  > f_chords.dot
-pattern G a h C D e f\#  > g_chords.dot
+pattern F g a B♭ h C d e  > f_chords.dot
+pattern G a h C D e f♯  > g_chords.dot
 
