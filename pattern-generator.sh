@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-pattern() {
+makedotfile() {
     local I=$1
     local ii=$2
     local iii=$3
@@ -49,7 +49,17 @@ EOF
 
 # ♭ ♯
 
-pattern C  d e F  G a h    > c_chords.dot
-pattern F  g a B♭ C d e    > f_chords.dot
-pattern G  a h C  D e f♯   > g_chords.dot
-pattern B♭ c d E♭ F g a    > Bb_chords.dot
+
+makedotfile C  d e F  G a h    > c_chords.dot
+dot -Tpdf c_chords.dot -o c_chords.pdf
+
+makedotfile F  g a B♭ C d e    > f_chords.dot
+dot -Tpdf f_chords.dot -o f_chords.pdf
+
+makedotfile G  a h C  D e f♯   > g_chords.dot
+dot -Tpdf g_chords.dot -o g_chords.pdf
+
+makedotfile B♭ c d E♭ F g a    > Bb_chords.dot
+dot -Tpdf Bb_chords.dot -o Bb_chords.pdf
+
+
