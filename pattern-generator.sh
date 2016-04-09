@@ -49,17 +49,23 @@ EOF
 
 # ♭ ♯
 
+makepdf() {
+    local label=$1
+    local dotfile="${label}_chords.dot"
+    local pdffile="${label}_chords.pdf"
 
-makedotfile C  d e F  G a h    > c_chords.dot
-dot -Tpdf c_chords.dot -o c_chords.pdf
+    makedotfile $2 $3 $4 $5 $6 $7 $8    > $dotfile
+    dot -Tpdf $dotfile -o $pdffile
 
-makedotfile F  g a B♭ C d e    > f_chords.dot
-dot -Tpdf f_chords.dot -o f_chords.pdf
+ 
+}
 
-makedotfile G  a h C  D e f♯   > g_chords.dot
-dot -Tpdf g_chords.dot -o g_chords.pdf
+# The basic scales we're working with
 
-makedotfile B♭ c d E♭ F g a    > Bb_chords.dot
-dot -Tpdf Bb_chords.dot -o Bb_chords.pdf
+makepdf  c  C  d e F  G a h
+makepdf  f  F  g a B♭ C d e
+makepdf  g  G  a h C  D e f♯
+makepdf  Bb B♭ c d E♭ F g a
+
 
 
