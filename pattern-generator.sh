@@ -9,8 +9,8 @@ makedotfile() {
     local V=$5
     local vi=$6
     local vii=$7
-    
-    
+
+
 cat <<EOF
 
 
@@ -57,15 +57,14 @@ makepdf() {
     makedotfile $2 $3 $4 $5 $6 $7 $8    > $dotfile
     dot -Tpdf $dotfile -o $pdffile
 
- 
+
 }
 
 # The basic scales we're working with
 
-makepdf  c  C  d e F  G a h
-makepdf  f  F  g a B♭ C d e
-makepdf  g  G  a h C  D e f♯
-makepdf  Bb B♭ c d E♭ F g a
-
-
-
+makepdf  C  C  d  e   F  G   a  h
+makepdf  F  F  g  a   B♭ C   d  e
+makepdf  G  G  a  h   C  D   e  f♯
+makepdf  Hb H♭ c  d   E♭ F   g  a
+makepdf  A  A  h  c♯  D  E   f♯ g♯
+makepdf  E  E  f♯ g♯  A  B♭  c♯ d♯
