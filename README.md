@@ -15,7 +15,9 @@ graphs with plausible chord sequence based on the abstract schema:
    in a compact form on a single page.
 
 
-#The results generated are:
+This is free software, Apache 2 licensed.
+
+# The results generated are:
 
 ## A root
 ![A_chords_chords.](png/A_chords_chords.png)
