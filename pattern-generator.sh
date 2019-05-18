@@ -9,14 +9,18 @@
 
 ##
 ## based on a graph I found in the book "Making music, 74 strategies
-## for electronic music producers".
+## for electronic music producers" by Dennis DeSantis.
 ##
 
+##
+## Preliminaries (run before anythign else)
+##
 
 # Check for depenencies (in this case only one)
 
-DEPENDENCIDES=dot
-for DEP in $DEPENDENCIES ; do
+
+for DEP in dot; do
+    echo "Checkcking dependency on $DEP"
     if [[ -z $(which $DEP) ]] ; then
 	echo "Couldn't find dependency $DEP"
 	exit 1
@@ -24,7 +28,15 @@ for DEP in $DEPENDENCIES ; do
 done
 
 
+##
+##  Prodcedures (used by the main program to do its job)
+##
 
+
+#
+# output to the standard output a grapviz (dot) file
+# generating a chord schema.
+#
 makedotfile() {
     local I=$1
     local ii=$2
@@ -33,7 +45,6 @@ makedotfile() {
     local V=$5
     local vi=$6
     local vii=$7
-
 
 cat <<EOF
 
@@ -73,30 +84,67 @@ EOF
 
 
 #
-# Based no a label, find the corresponding dotfile and
-# generate a pdf file.
+# Generate a dotfile for a particular label and put it in a file
+# with the label used to generate the filename.
 #
-makepdf() {
+makedot() {
     local label=$1
-    local dotfile="${label}_chords.dot"
-    local pdffile="${label}_chords.pdf"
+    local dotfile=dot/"${label}_chords.dot"
 
     makedotfile $2 $3 $4 $5 $6 $7 $8    > $dotfile
-    dot -Tpdf $dotfile -o $pdffile
 }
+
+##
+##  Main program
+##
+
+RESULT_DIRECTORIES="pdf png dot"
+
+# Empty or create result directories
+echo "Clear or generate result directories"
+for RESULT_DIR in $RESULT_DIRECTORIES ; do
+    if [[ -d "$RESULT_DIR" ]] ; then
+	echo "   .. clearing directory $RESULT_DIR"
+	rm -f "$RESULT_DIR/*"
+    else
+	echo "   .. generating directory $RESULT_DIR"	
+	mkdir -p "$RESULT_DIR"
+    fi
+done
+
+
 
 # The basic scales we're working with.  Uppercase
 # characters designate major chords, lowercase characters
 # designate minor chords.
-
-makepdf  C  C  d  e   F  G   a  h
-makepdf  F  F  g  a   B♭ C   d  e
-makepdf  G  G  a  h   C  D   e  f♯
-makepdf  Hb H♭ c  d   E♭ F   g  a
-makepdf  A  A  h  c♯  D  E   f♯ g♯
-makepdf  E  E  f♯ g♯  A  B♭  c♯ d♯
+echo "Generating the chord schema dotfiles"
+makedot  C  C  d  e   F  G   a  h
+makedot  F  F  g  a   B♭ C   d  e
+makedot  G  G  a  h   C  D   e  f♯
+makedot  Hb H♭ c  d   E♭ F   g  a
+makedot  A  A  h  c♯  D  E   f♯ g♯
+makedot  E  E  f♯ g♯  A  B♭  c♯ d♯
 
 #
 # and the abstract schema it's all based on
 #
-makepdf abtract I ii iii IV V vi vii
+makedot abtract I ii iii IV V vi vii
+
+
+#
+# Finally generate the pdf and  png files based on the
+# dot files generated above.
+
+echo "Generating output files "
+for outFormat in pdf png ; do
+    echo "... for $outFormat."
+    for dotfile in dot/* ; do
+	label=$(basename $dotfile .dot)
+	outFile="${outFormat}/${label}_chords.${outFormat}"
+	echo "   Converting $dotfile"
+	echo " .. to $outFile"
+	dot -T${outFormat} $dotfile -o $outFile
+    done
+done
+
+echo "done"
