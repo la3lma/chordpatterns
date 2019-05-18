@@ -2,7 +2,10 @@
 
 Inspired by a graph I found in the book "Making music, 74 strategies
 for electronic music producers", this is a small script that will generate
-graphs with plausible chord sequences.
+graphs with plausible chord sequence based on the abstract schema:
+
+
+![abtract_chords_chords](png/abtract_chords_chords.png)
 
 
 * The .dot files represents the graphs
@@ -32,9 +35,6 @@ graphs with plausible chord sequences.
 ## bH (bB) root
 
 ![Hb_chords_chords](png/Hb_chords_chords.png)
-
-## Abstract root
-![abtract_chords_chords](png/abtract_chords_chords.png)
 
 
 
