@@ -1,0 +1,32 @@
+
+
+digraph G {
+
+  compound=true;
+  forcelabels=true;
+
+  iii[label="iii: c♯"];
+  vi[label="vi: f♯"];
+  V[label="V: E"];
+  I[label="I: A"];
+  IV[label="IV: D"];
+  vii[label="vii: g♯"];
+  ii[label="ii: h"];
+
+
+
+   subgraph cluster1 {
+      IV  -> ii;
+      color=blue
+   }
+   subgraph cluster2 {
+      vii;
+      V;
+   }
+   V -> vi [ltail=cluster2];
+   ii-> vii [ltail=cluster1, lhead=cluster2];
+   V   -> I [ltail=cluster2];
+   IV  -> I [ltail=cluster1];
+   iii -> vi;
+   vi  -> ii [lhead=cluster1];
+}
